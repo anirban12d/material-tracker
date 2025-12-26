@@ -13,6 +13,7 @@ import {
 import { ExportButton } from "@/features/export-feature";
 import { useMaterialRequests } from "@/features/material-requests/hooks";
 import { QUERY_KEYS } from "@/features/material-requests/constants";
+import { useAuth } from "@/features/auth";
 import type {
   MaterialRequestFilters,
   PaginationParams,
@@ -44,6 +45,7 @@ function MaterialRequestsPage() {
   const navigate = useNavigate({ from: Route.fullPath });
   const searchParams = Route.useSearch();
   const queryClient = useQueryClient();
+  const { profile } = useAuth();
 
   // Local state for instant UI updates (before debounce)
   const [searchInput, setSearchInput] = useState(searchParams.search);
@@ -123,6 +125,7 @@ function MaterialRequestsPage() {
   );
 
   // Fetch data with server-side pagination
+  // Only fetch when profile is available (ensures RLS has proper context)
   const {
     data: response,
     isLoading,
@@ -132,6 +135,7 @@ function MaterialRequestsPage() {
     filters,
     pagination,
     sorting,
+    enabled: !!profile,
   });
 
   const handleRetry = () => {
