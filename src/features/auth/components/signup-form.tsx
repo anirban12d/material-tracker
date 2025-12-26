@@ -220,7 +220,7 @@ export function SignupForm() {
               )}
             </div>
           </CardContent>
-          <CardFooter className="flex sm:mt-6 flex-col gap-4">
+          <CardFooter className="flex mt-6 flex-col gap-4">
             <Button
               type="submit"
               className="h-10 w-full"
