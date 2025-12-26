@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useRouter } from '@tanstack/react-router'
+import { useQueryClient } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -36,6 +37,7 @@ export function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)
   const { signIn } = useAuth()
   const router = useRouter()
+  const queryClient = useQueryClient()
 
   const {
     register,
@@ -61,6 +63,9 @@ export function LoginForm() {
         setIsLoading(false)
         return
       }
+
+      // Clear all cached queries to ensure fresh data with new session
+      queryClient.clear()
 
       // Navigate after successful sign in
       router.navigate({ to: '/material-requests' })
