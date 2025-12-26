@@ -2,6 +2,11 @@
 
 A production-grade Material Request Tracker for construction projects built with React, TypeScript, Supabase, and TanStack.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/material-tracker&env=VITE_SUPABASE_URL,VITE_SUPABASE_ANON_KEY&envDescription=Supabase%20credentials%20required&envLink=https://supabase.com/dashboard/project/_/settings/api)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/YOUR_USERNAME/material-tracker)
+
+> **Note:** Replace `YOUR_USERNAME` in the badge URLs above with your GitHub username after pushing to GitHub.
+
 ## Features
 
 - **Authentication**: Secure user authentication with Supabase Auth
@@ -233,9 +238,11 @@ pnpm check        # Format and lint
 
 ## Deployment
 
-This is a static SPA that can be deployed to any static hosting service.
+This is a static SPA that can be deployed to any static hosting service. Use the one-click deploy buttons at the top of this README, or follow the manual steps below.
 
 ### Vercel (Recommended)
+
+Click the **Deploy with Vercel** button above, or:
 
 1. Push your code to GitHub
 2. Import the repository in [Vercel](https://vercel.com)
@@ -245,6 +252,8 @@ This is a static SPA that can be deployed to any static hosting service.
 4. Deploy (Vercel auto-detects Vite projects)
 
 ### Netlify
+
+Click the **Deploy to Netlify** button above, or:
 
 1. Push your code to GitHub
 2. Import the repository in [Netlify](https://netlify.com)
@@ -265,7 +274,7 @@ pnpm build
 This project was developed with assistance from Claude (Anthropic), which was used for:
 
 - Documentation writing
-- Debugging and problem-solving
+- Debugging and error resolution
 
 ## Approach & Decisions
 
