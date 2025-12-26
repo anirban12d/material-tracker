@@ -1,9 +1,8 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import {
   useReactTable,
   getCoreRowModel,
   flexRender,
-  type VisibilityState,
 } from "@tanstack/react-table";
 import {
   Table,
@@ -42,7 +41,6 @@ export function MaterialRequestTable({
   onPaginationChange,
   onSortingChange,
 }: MaterialRequestTableProps) {
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [deleteDialog, setDeleteDialog] = useState<{
     open: boolean;
     requestId: string | null;
@@ -52,23 +50,6 @@ export function MaterialRequestTable({
     requestId: null,
     materialName: "",
   });
-
-  // Hide some columns on mobile
-  useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth < 640;
-      setColumnVisibility({
-        unit: !isMobile,
-        priority: !isMobile,
-        requested_by: !isMobile,
-        requested_at: !isMobile,
-      });
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const deleteMutation = useDeleteMaterialRequest({
     onSuccess: () => {
@@ -117,10 +98,6 @@ export function MaterialRequestTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    onColumnVisibilityChange: setColumnVisibility,
-    state: {
-      columnVisibility,
-    },
     // Server-side pagination - don't use client-side pagination model
     manualPagination: true,
     manualSorting: true,
